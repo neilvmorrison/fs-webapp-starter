@@ -1,0 +1,21 @@
+{
+  "name": "fs-webapp-starter",
+  "version": "0.0.1",
+  "description": "A simple note taker app to get you off the subscriptions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server:add": "pnpm add --filter server",
+    "web:add": "pnpm add --filter web",
+    "server:dev": "pnpm run dev --filter server",
+    "web:dev": "pnpm run dev --filter web"
+  },
+  "keywords": [],
+  "author": "Neil Morrison",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1",
+  "workspaces": [
+    "packages/*",
+    "shared/*"
+  ]
+}
