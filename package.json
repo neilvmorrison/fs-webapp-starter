@@ -7,15 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server:add": "pnpm add --filter server",
     "web:add": "pnpm add --filter web",
-    "server:dev": "pnpm run dev --filter server",
-    "web:dev": "pnpm run dev --filter web"
+    "server:dev": "pnpm --dir ./packages/server run dev",
+    "web:dev": "pnpm --dir ./packages/web run dev",
+    "dev": "concurrently \"pnpm --dir ./packages/web run dev\" \"pnpm --dir ./packages/server run dev\""
   },
   "keywords": [],
   "author": "Neil Morrison",
   "license": "MIT",
   "packageManager": "pnpm@10.13.1",
-  "workspaces": [
-    "packages/*",
-    "shared/*"
-  ]
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
 }
