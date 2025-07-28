@@ -1,5 +1,6 @@
 import { UnstyledButton, Avatar, Group, Box, Text } from "@mantine/core";
 import classes from "./user-button.module.css";
+import { Link } from "react-router";
 
 interface IUserButtonProps {
   name: string;
@@ -13,7 +14,7 @@ export default function UserButton({
   avatarUrl,
 }: IUserButtonProps) {
   return (
-    <UnstyledButton className={classes.root}>
+    <UnstyledButton className={classes.root} component={Link} to="/profile">
       <Group>
         <Avatar src={avatarUrl} />
         <Box>
