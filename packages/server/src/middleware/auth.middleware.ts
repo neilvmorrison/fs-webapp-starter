@@ -6,6 +6,10 @@ export default async function authMiddleware(
 ) {
   try {
     await next();
+    // ctx.status = 302;
+    // ctx.body = { message: "Authorized" };
+    // ctx.redirect("/auth");
+    return;
   } catch (error) {
     ctx.status = 401;
     ctx.body = { message: "Unauthorized" };

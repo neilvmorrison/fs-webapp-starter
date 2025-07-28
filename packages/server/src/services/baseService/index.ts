@@ -10,4 +10,28 @@ export default abstract class BaseService {
   protected async query() {
     return;
   }
+
+  async findMany() {
+    return;
+  }
+
+  async findOne() {
+    return;
+  }
+
+  async findOneOrFail() {
+    return;
+  }
+
+  async create() {
+    return;
+  }
+
+  async update() {
+    return;
+  }
+
+  async delete() {
+    return;
+  }
 }
