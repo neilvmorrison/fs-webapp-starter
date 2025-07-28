@@ -1,0 +1,7 @@
+.root {
+  padding: var(--mantine-spacing-md);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

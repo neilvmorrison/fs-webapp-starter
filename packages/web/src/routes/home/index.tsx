@@ -1,9 +1,19 @@
+import { TextInput } from "@mantine/core";
 import { usePageMetadata } from "../../hooks";
+import styles from "./home.module.css";
 
 export default function Home() {
   usePageMetadata({
-    title: "App Name Inc. - Home",
+    title: "Big Brain Time",
   });
 
-  return <div>Home</div>;
+  return (
+    <div className={styles.root}>
+      <TextInput
+        label="Prompt"
+        placeholder="What should we do?"
+        w={{ base: "100%", lg: "50%" }}
+      />
+    </div>
+  );
 }
