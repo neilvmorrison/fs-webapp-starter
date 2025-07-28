@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server:add": "pnpm add --filter server",
-    "web:add": "pnpm add --filter web",
     "server:dev": "pnpm --dir ./packages/server run dev",
+    "shared:build": "pnpm --dir ./packages/shared run build",
+    "shared:add": "pnpm --dir ./packages/shared add",
+    "web:add": "pnpm add --filter web",
     "web:dev": "pnpm --dir ./packages/web run dev",
+    "web:build": "pnpm --dir ./packages/web run build",
     "dev": "concurrently \"pnpm --dir ./packages/web run dev\" \"pnpm --dir ./packages/server run dev\""
   },
   "keywords": [],
@@ -16,6 +19,7 @@
   "license": "MIT",
   "packageManager": "pnpm@10.13.1",
   "devDependencies": {
-    "concurrently": "^9.2.0"
+    "concurrently": "^9.2.0",
+    "typescript": "^5.8.3"
   }
 }
