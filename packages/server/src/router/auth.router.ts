@@ -7,6 +7,7 @@ authRouter.post("/login", async (ctx) => {
 });
 
 authRouter.post("/register", (ctx) => {
+  console.log(ctx.state.user);
   ctx.body = { message: "Register" };
 });
 

@@ -5,10 +5,8 @@ export default async function authMiddleware(
   next: () => Promise<void>
 ) {
   try {
+    ctx.state.user = "123";
     await next();
-    // ctx.status = 302;
-    // ctx.body = { message: "Authorized" };
-    // ctx.redirect("/auth");
     return;
   } catch (error) {
     ctx.status = 401;
