@@ -9,6 +9,7 @@ import classes from "./layout.module.css";
 export default function Layout() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
+
   return (
     <AppShell
       padding="md"

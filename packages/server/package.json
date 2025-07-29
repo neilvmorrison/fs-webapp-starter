@@ -20,6 +20,7 @@
     "koa": "^3.0.0",
     "koa-logger": "^4.0.0",
     "koa-static": "^5.0.0",
+    "ollama": "^0.5.16",
     "pg": "^8.16.3"
   },
   "devDependencies": {

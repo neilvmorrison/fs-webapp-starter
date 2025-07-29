@@ -1,4 +1,6 @@
 import { Pool } from "pg";
+import dotenv from "dotenv";
+dotenv.config();
 
 const client = new Pool({
   user: process.env.DB_USER,
@@ -6,6 +8,10 @@ const client = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: parseInt(process.env.DB_PORT!),
+});
+
+client.on("error", (err, client) => {
+  console.log(err, client);
 });
 
 export default client;
