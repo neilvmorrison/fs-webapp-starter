@@ -1,32 +1,81 @@
 import Router from "@koa/router";
-import ollama from "ollama";
+import ollama, { GenerateResponse } from "ollama";
 import OllamaService from "../ollama";
+import fs from "fs";
+import path from "path";
 
-const basePrompt = `You are a helpful assistant that will analyze user requests and generate a raw JSON object as your response, nothing else. Your task is now to choose which of the following services to call with the JSON object you've created: create-transaction, create-note, create-project, update-schedule. Your response will be in the form { service: one of the above, data: <JSON object> }.`;
+const basePromptFilePath = path.join(
+  __dirname,
+  "..",
+  "prompts",
+  "agentRouterPrompt.txt"
+);
+const basePrompt = fs.readFileSync(basePromptFilePath, "utf8");
 
 const ollamaService = new OllamaService(ollama);
 
 const agentRouter = new Router({ prefix: "/agent" });
 
-function performAction(action: string, data: any) {
+async function createTransaction(data: any) {
+  console.log("created transaction", data);
+  return data;
+}
+
+async function createNote(data: any) {
+  console.log("created note", data);
+  return data;
+}
+
+async function createProject(data: any) {
+  console.log("created project", data);
+  return data;
+}
+
+async function updateSchedule(data: any) {
+  console.log("updated schedule", data);
+  return data;
+}
+
+async function createTask(data: any) {
+  console.log("created task", data);
+  return data;
+}
+
+function getHandler(action: string) {
   switch (action) {
     case "create-transaction":
-      break;
+      return createTransaction;
     case "create-note":
-      break;
+      return createNote;
     case "create-project":
-      break;
+      return createProject;
     case "update-schedule":
-      break;
+      return updateSchedule;
+    case "create-task":
+      return createTask;
     default:
       throw new Error("Invalid action");
   }
 }
 
+async function processResponse(response: GenerateResponse) {
+  const data = JSON.parse(response.response);
+  return data;
+}
+
 agentRouter.post("/generate", async (ctx) => {
   const { prompt } = ctx.request.body;
-  const response = await ollamaService.generate(`${basePrompt}\n\n${prompt}`);
-  ctx.body = { data: response, user_id: ctx.state.user };
+  const response = await ollamaService.generate(
+    `${basePrompt}\n\nUser: ${prompt}`
+  );
+
+  const processedResponse = await processResponse(response);
+  const handler = getHandler(processedResponse.service);
+  const result = await handler(processedResponse.data);
+  ctx.body = {
+    data: result,
+    user_id: ctx.state.user,
+  };
 });
 
 export default agentRouter;

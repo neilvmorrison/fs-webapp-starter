@@ -1,4 +1,4 @@
-# Full Stack Project Starter
+# Cofoundry AI
 
 A pnpm monorepo that contains a KoaJS server and a vite React web app.
 
